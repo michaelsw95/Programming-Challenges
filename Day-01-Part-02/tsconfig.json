@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+      "target": "es2015",
+      "moduleResolution": "node",
+      "module": "commonjs",
+      "alwaysStrict": true,
+      "noImplicitAny": true,
+      "lib": [      
+        "dom",
+        "es2015",
+        "esnext.asynciterable"
+      ]
+    }
+  }

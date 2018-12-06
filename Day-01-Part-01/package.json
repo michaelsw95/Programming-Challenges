@@ -1,0 +1,9 @@
+{
+  "name": "day-01-part-01",
+  "version": "1.0.0",
+  "main": "program.js",
+  "noImplicitAny": true,
+  "devDependencies": {
+    "@types/requirejs": "^2.1.31"
+  }
+}
