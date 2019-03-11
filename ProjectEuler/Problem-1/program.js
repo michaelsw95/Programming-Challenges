@@ -1,3 +1,5 @@
+'use strict';
+
 const sumOfAllMultiples = (multiple, upperLimit, currentSum = 0, currentIteration = 0) => {
     if (upperLimit === currentIteration) {
         return currentSum;
