@@ -1,3 +1,5 @@
+'use strict';
+
 const sumOfEvenFibonacciNumbers = (lastFibNumber, currentFibNumber, sum, maxValue) => {
     const nextFibNumber = lastFibNumber + currentFibNumber;
 
