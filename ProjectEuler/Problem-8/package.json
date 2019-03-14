@@ -1,0 +1,10 @@
+{
+  "name": "problem-8",
+  "version": "1.0.0",
+  "main": "program.js",
+  "noImplicitAny": true,
+  "devDependencies": {
+    "@types/node": "^11.11.3",
+    "@types/requirejs": "^2.1.31"
+  }
+}
