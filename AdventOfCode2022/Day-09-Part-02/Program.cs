@@ -1,38 +1,31 @@
-﻿var moveInstructions = File
-    .ReadAllLines("input.txt")
-    .Select(instruction => {
-        var instructionParts = instruction.Split(' ');
+﻿var chain = new Position[10];
 
-        var direction = instructionParts[0] switch
-        {
-            "R" => Direction.Right,
-            "L" => Direction.Left,
-            "U" => Direction.Up,
-            "D" => Direction.Down,
-            _ => throw new Exception("Invalid direction")
-        };
-
-        var distance = int.Parse(instructionParts[1]);
-        return new Instruction(direction, distance);
-    })
-    .ToArray();
-
-const int ChainLength = 10;
-var chain = new Position[ChainLength];
-for (var i = 0; i < ChainLength; i++)
+for (var i = 0; i < chain.Length; i++)
 {
     chain[i] = new Position(0, 0);
 }
 
 var vistedTailPositions = new HashSet<Position>() { chain.Last() };
 
-foreach (var move in moveInstructions)
+var instructions = File.ReadAllLines("input.txt");
+foreach (var move in instructions)
 {
-    var iterateFunc = GetIteratorForMove(move.Direction);
+    var instructionParts = move.Split(' ');
 
-    for (var i = 0; i < move.Distance; i++)
+    Func<Position, Position> iterateForDirection = instructionParts[0] switch
     {
-        chain[0] = iterateFunc(chain[0]);
+        "R" => IterateRight,
+        "L" => IterateLeft,
+        "U" => IterateUp,
+        "D" => IterateDown,
+        _ => throw new Exception("Invalid direction")
+    };
+
+    var distance = int.Parse(instructionParts[1]);
+
+    for (var i = 0; i < distance; i++)
+    {
+        chain[0] = iterateForDirection(chain[0]);
 
         for (var j = 0; j < chain.Length - 1; j++)
         {
@@ -99,27 +92,9 @@ Position GetClosestFlankBetweenPostions(Position positionA, Position positionB)
     return (xDistance, yDistance);
 }
 
-Func<Position, Position> GetIteratorForMove(Direction move) => move switch
-{
-    Direction.Right => IterateRight,
-    Direction.Left => IterateLeft,
-    Direction.Up => IterateUp,
-    Direction.Down => IterateDown,
-    _ => throw new Exception("Invalid direction")
-};
-
 Position IterateRight(Position Position) => new Position(Position.X + 1, Position.Y);
 Position IterateLeft(Position Position) => new Position(Position.X - 1, Position.Y);
 Position IterateUp(Position Position) => new Position(Position.X, Position.Y + 1);
 Position IterateDown(Position Position) => new Position(Position.X, Position.Y - 1);
 
 record Position(int X, int Y);
-record Instruction(Direction Direction, int Distance);
-
-enum Direction
-{
-    Right,
-    Left,
-    Up,
-    Down
-}
