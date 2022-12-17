@@ -30,14 +30,18 @@ for (var i = 0; i < map.Length; i++)
     {
         if (shortestPath.Contains(new Position(i, j)))
         {
-            output.Append("-- ");
-        }
-        else
-        {
             var height = map[i][j].Height;
             var toPrepend = height < 10 ? "0" : string.Empty;
 
             output.Append($"{toPrepend}{height} ");
+        }
+        else if (map[i][j].Type == MapSquareType.Exit)
+        {
+            output.Append("E  ");
+        }
+        else
+        {
+            output.Append("-- ");
         }
     }
 
