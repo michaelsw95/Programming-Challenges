@@ -17,7 +17,7 @@ allPackets.Sort(new PacketCompare());
 var positionOfDividerPacketOne = allPackets.IndexOf(dividerPacketOne) + 1;
 var positionOfDividerPacketTwo = allPackets.IndexOf(dividerPacketTwo) + 1;
 
-Console.WriteLine($"Day 13 - Part 1 {positionOfDividerPacketOne * positionOfDividerPacketTwo}");
+Console.WriteLine($"Day 13 - Part 2 {positionOfDividerPacketOne * positionOfDividerPacketTwo}");
 
 class PacketCompare : IComparer<Packet>
 {
