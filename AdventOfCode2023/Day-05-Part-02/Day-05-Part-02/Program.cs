@@ -7,12 +7,13 @@ var maps = GetMaps(input);
 const string sourceMap = "seed";
 const string targetMap = "location";
 const int blockIteration = 5000;
+
 var mapLookup = maps.ToDictionary(map => map.FromName, map => map);
 
 var roughMinimum = (MinimumValueFound: long.MaxValue, BlockMinimumWasFoundIn: default(long));
 foreach (var seedRangePair in seeds)
 {
-    var newMinimumFound = FindMinimumForSeedRange(seedRangePair.Start, seedRangePair.Range, blockIteration);
+    var newMinimumFound = FindMinimumForSeedRange(mapLookup, seedRangePair.Start, seedRangePair.Range, blockIteration);
 
     if (newMinimumFound.MinimumValueFound < roughMinimum.MinimumValueFound)
     {
@@ -21,7 +22,7 @@ foreach (var seedRangePair in seeds)
     }
 }
 
-var refinedMinimum = FindMinimumForSeedRange(roughMinimum.BlockMinimumWasFoundIn - blockIteration, blockIteration * 2, 1);
+var refinedMinimum = FindMinimumForSeedRange(mapLookup, roughMinimum.BlockMinimumWasFoundIn - blockIteration, blockIteration * 2, 1);
 
 Console.WriteLine($"Day 5 - Part 2: {refinedMinimum.MinimumValueFound}");
 
@@ -71,7 +72,7 @@ List<Map> GetMaps(IEnumerable<string> inputLines)
     return list;
 }
 
-(long MinimumValueFound, long BlockFoundIn) FindMinimumForSeedRange(long start, long range, int seedSearchIteration)
+(long MinimumValueFound, long BlockFoundIn) FindMinimumForSeedRange(Dictionary<string, Map> mapLookup, long start, long range, int seedSearchIteration)
 {
     var result = (MinimumValueFound: long.MaxValue, BlockFoundIn: default(long));
     for (var i = 0; i < range; i += seedSearchIteration)
