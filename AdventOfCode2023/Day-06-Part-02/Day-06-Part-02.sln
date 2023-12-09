@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day-06-Part-2", "Day-06-Part-2.csproj", "{B738610C-A991-49D2-B4A7-D18D890539FB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day-06-Part-02", "Day-06-Part-02.csproj", "{B738610C-A991-49D2-B4A7-D18D890539FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

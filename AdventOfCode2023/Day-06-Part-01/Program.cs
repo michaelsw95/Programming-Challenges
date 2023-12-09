@@ -35,6 +35,4 @@ int GetNumberOfButtonLengthsToWin(Race race)
     return numberOfButtonLengthsToWin;
 }
 
-Console.WriteLine("Hello, World!");
-
 record Race(int Time, int Distance);
