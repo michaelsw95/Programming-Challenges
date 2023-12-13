@@ -17,16 +17,17 @@ for (var y = 0; y < parsedMap.Length; y++)
     
     for (var x = 0; x < parsedMap[y].Length; x++)
     {
-        if (pathNodes.Contains(new Position(x, y)))
+        var current = new Position(x, y);
+        if (pathNodes.Contains(current))
         {
             if (parsedMap[y][x] == MapNodeType.BendSouthEast || parsedMap[y][x] == MapNodeType.BendSouthWest || parsedMap[y][x] == MapNodeType.Vertical)
             {
                 wallsEncountered++;
             }
         }
-        else if (!pathNodes.Contains(new Position(x, y)) && wallsEncountered % 2 != 0)
+        else if (!pathNodes.Contains(current) && wallsEncountered % 2 != 0)
         {
-            allPositionsInsidePath.Add(new Position(x, y));
+            allPositionsInsidePath.Add(current);
         }
     }
 }
